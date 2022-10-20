@@ -9,8 +9,9 @@ pipeline{
         stage('Pull test'){
             steps{
                 sshagent([credential]){
-                    ssh """ssh -o StrictHostKeyChecking=no ${server} << EOF
-                    cd ${directory}
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                    echo "Pulling Wayshub Backend Repository"
+                    cd ${dir}
                     git pull origin ${branch}
                     exit
                     EOF"""
